@@ -15,14 +15,27 @@ Milestone 1: Foundation
     'depends': [
         'fleet',
         'hr',
-        'maintenance',
         'hr_expense',
         'mail',
     ],
     'data': [
         'security/transitops_groups.xml',
         'security/ir.model.access.csv',
+        'security/transitops_record_rules.xml',
+        'data/fleet_vehicle_state_data.xml',
+        'views/transitops_dashboard_action.xml',
+        'views/fleet_trip_views.xml',
+        'views/fleet_vehicle_views.xml',
+        'wizard/transitops_csv_export_views.xml',
+        'views/transitops_menus.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'transitops/static/src/js/transitops_dashboard.js',
+            'transitops/static/src/xml/transitops_dashboard.xml',
+            'transitops/static/src/scss/transitops_dashboard.scss',
+        ],
+    },
     'installable': True,
     'application': True,
     'license': 'LGPL-3',
