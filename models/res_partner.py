@@ -4,13 +4,6 @@ from odoo.exceptions import ValidationError
 
 
 class ResPartner(models.Model):
-    """Extends res.partner (Fleet's existing driver_id target) instead of
-    creating a standalone fleet.driver model.
-
-    Reused as-is:
-      - name        -> Driver Name
-      - phone / mobile -> Contact Number
-    """
     _inherit = 'res.partner'
 
     is_transitops_driver = fields.Boolean(

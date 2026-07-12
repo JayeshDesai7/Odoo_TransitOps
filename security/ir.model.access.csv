@@ -2,3 +2,9 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_fleet_vehicle_safety_officer,fleet.vehicle.safety.officer,fleet.model_fleet_vehicle,group_transitops_safety_officer,1,0,0,0
 access_res_partner_safety_officer,res.partner.safety.officer,base.model_res_partner,group_transitops_safety_officer,1,0,0,0
 access_fleet_vehicle_financial_analyst,fleet.vehicle.financial.analyst,fleet.model_fleet_vehicle,group_transitops_financial_analyst,1,0,0,0
+access_fleet_trip_dispatcher,fleet.trip.dispatcher,model_fleet_trip,group_transitops_dispatcher,1,1,1,0
+access_fleet_trip_fleet_manager,fleet.trip.fleet.manager,model_fleet_trip,group_transitops_fleet_manager,1,1,1,1
+access_fleet_trip_financial_analyst,fleet.trip.financial.analyst,model_fleet_trip,group_transitops_financial_analyst,1,0,0,0
+access_fleet_trip_safety_officer,fleet.trip.safety.officer,model_fleet_trip,group_transitops_safety_officer,1,0,0,0
+access_fleet_log_services_fleet_manager,fleet.log.services.fleet.manager,fleet.model_fleet_vehicle_log_services,group_transitops_fleet_manager,1,1,1,1
+access_transitops_csv_export,transitops.csv.export,model_transitops_csv_export,base.group_user,1,1,1,1

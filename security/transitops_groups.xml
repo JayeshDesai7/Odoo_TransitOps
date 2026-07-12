@@ -7,45 +7,38 @@
             <field name="sequence">20</field>
         </record>
 
-        <!-- Odoo 19: groups no longer point at category_id directly.
-             A privilege sits between the group and the module category. -->
-        <record id="privilege_transitops_roles" model="res.groups.privilege">
-            <field name="name">TransitOps Roles</field>
+        <record model="res.groups.privilege" id="res_groups_privilege_transitops">
+            <field name="name">TransitOps</field>
+            <field name="sequence">20</field>
             <field name="category_id" ref="module_category_transitops"/>
-            <field name="sequence">10</field>
         </record>
 
         <!-- Fleet Manager: oversees fleet assets, maintenance, lifecycle -->
         <record id="group_transitops_fleet_manager" model="res.groups">
             <field name="name">Fleet Manager</field>
-            <field name="privilege_id" ref="privilege_transitops_roles"/>
+            <field name="privilege_id" ref="res_groups_privilege_transitops"/>
             <field name="implied_ids" eval="[(4, ref('fleet.fleet_group_manager'))]"/>
         </record>
 
-        <!-- Dispatcher: spec's "Driver" persona — creates trips,
+        <!-- Dispatcher: named "Driver" persona in the spec — creates trips,
              assigns vehicles/drivers, monitors active deliveries -->
         <record id="group_transitops_dispatcher" model="res.groups">
             <field name="name">Dispatcher</field>
-            <field name="privilege_id" ref="privilege_transitops_roles"/>
+            <field name="privilege_id" ref="res_groups_privilege_transitops"/>
             <field name="implied_ids" eval="[(4, ref('fleet.fleet_group_user'))]"/>
         </record>
 
         <!-- Safety Officer: license/compliance/safety score visibility -->
         <record id="group_transitops_safety_officer" model="res.groups">
             <field name="name">Safety Officer</field>
-            <field name="privilege_id" ref="privilege_transitops_roles"/>
+            <field name="privilege_id" ref="res_groups_privilege_transitops"/>
         </record>
 
-        <!-- Financial Analyst: expense/fuel/maintenance cost visibility.
-             NOTE: hr_expense.group_hr_expense_user is UNVERIFIED against
-             your Odoo 19 instance — hr.expense.sheet was removed in 19
-             and expense access groups may have been renamed alongside it.
-             If module install fails here, check Settings > Technical >
-             Groups for the correct current external ID before re-adding
-             this implied_ids line. -->
+        <!-- Financial Analyst: expense/fuel/maintenance cost visibility -->
         <record id="group_transitops_financial_analyst" model="res.groups">
             <field name="name">Financial Analyst</field>
-            <field name="privilege_id" ref="privilege_transitops_roles"/>
+            <field name="privilege_id" ref="res_groups_privilege_transitops"/>
+            <field name="implied_ids" eval="[(4, ref('hr_expense.group_hr_expense_user'))]"/>
         </record>
 
     </data>
