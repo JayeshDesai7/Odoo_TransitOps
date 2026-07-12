@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_transitops_csv_export_form" model="ir.ui.view">
+        <field name="name">transitops.csv.export.form</field>
+        <field name="model">transitops.csv.export</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="report_type"/>
+                    <field name="file_data" filename="file_name"
+                           invisible="not file_data"/>
+                    <field name="file_name" invisible="1"/>
+                </group>
+                <footer>
+                    <button name="action_export" type="object"
+                            string="Generate CSV" class="oe_highlight"
+                            invisible="file_data"/>
+                    <button string="Close" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_transitops_csv_export" model="ir.actions.act_window">
+        <field name="name">Export Report (CSV)</field>
+        <field name="res_model">transitops.csv.export</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

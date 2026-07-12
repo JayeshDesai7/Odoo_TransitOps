@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_fleet_vehicle_form_transitops" model="ir.ui.view">
+        <field name="name">fleet.vehicle.form.transitops</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+        <field name="arch" type="xml">
+            <field name="odometer" position="after">
+                <field name="max_load_capacity"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_fleet_vehicle_form_costs" model="ir.ui.view">
+        <field name="name">fleet.vehicle.form.costs.transitops</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="TransitOps Analytics"
+                      groups="transitops.group_transitops_financial_analyst,transitops.group_transitops_fleet_manager">
+                    <group>
+                        <field name="total_fuel_cost"/>
+                        <field name="total_maintenance_cost"/>
+                        <field name="total_operational_cost"/>
+                        <field name="total_trip_revenue"/>
+                        <field name="fuel_efficiency"/>
+                        <field name="roi"/>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <record id="view_fleet_vehicle_log_services_form_close" model="ir.ui.view">
+        <field name="name">fleet.vehicle.log.services.form.close</field>
+        <field name="model">fleet.vehicle.log.services</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_log_services_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button name="action_close_maintenance" type="object"
+                            string="Close Maintenance" class="oe_highlight"
+                            invisible="active_maintenance == False"/>
+                    <field name="active_maintenance" widget="boolean_toggle"/>
+                </header>
+            </xpath>
+            <field name="amount" position="after">
+                <field name="liter"/>
+            </field>
+        </field>
+    </record>
+</odoo>

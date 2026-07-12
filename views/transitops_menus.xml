@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_transitops_root" name="TransitOps"
+              sequence="15" web_icon="transitops,static/description/icon.png"/>
+
+    <menuitem id="menu_transitops_dashboard" name="Dashboard"
+              parent="menu_transitops_root" sequence="1"
+              action="transitops.action_transitops_dashboard"/>
+
+    <menuitem id="menu_transitops_trips" name="Trips"
+              parent="menu_transitops_root" sequence="2"
+              action="action_fleet_trip"/>
+
+    <menuitem id="menu_transitops_vehicles" name="Vehicles"
+              parent="menu_transitops_root" sequence="3"
+              action="fleet.fleet_vehicle_action"/>
+
+    <record id="menu_transitops_drivers_action" model="ir.actions.act_window">
+        <field name="name">Drivers</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_transitops_driver', '=', True)]</field>
+        <field name="context">{'default_is_transitops_driver': True}</field>
+    </record>
+
+    <menuitem id="menu_transitops_drivers" name="Drivers"
+              parent="menu_transitops_root" sequence="4"
+              action="menu_transitops_drivers_action"/>
+
+    <menuitem id="menu_transitops_reports" name="Reports"
+              parent="menu_transitops_root" sequence="5"
+              action="action_transitops_csv_export"/>
+</odoo>
