@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="transitops.Dashboard">
+        <div class="transitops_dashboard p-4">
+            <h2>TransitOps Dashboard</h2>
+
+            <div class="d-flex gap-3 mb-3">
+                <select t-on-change="(ev) => this.onFilterChange('vehicle_type', ev.target.value)">
+                    <option value="">All Vehicle Types</option>
+                    <t t-foreach="state.vehicleTypes" t-as="vt" t-key="vt.id">
+                        <option t-att-value="vt.id"><t t-esc="vt.name"/></option>
+                    </t>
+                </select>
+                <select t-on-change="(ev) => this.onFilterChange('status', ev.target.value)">
+                    <option value="">All Statuses</option>
+                    <option value="Available">Available</option>
+                    <option value="On Trip">On Trip</option>
+                    <option value="In Shop">In Shop</option>
+                    <option value="Retired">Retired</option>
+                </select>
+            </div>
+
+            <div class="row g-3 mb-4">
+                <div class="col-3">
+                    <div class="card p-3">
+                        <span>Active Vehicles</span>
+                        <h3><t t-esc="state.kpis.active_vehicles"/></h3>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="card p-3">
+                        <span>Available Vehicles</span>
+                        <h3><t t-esc="state.kpis.available_vehicles"/></h3>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="card p-3">
+                        <span>Vehicles In Shop</span>
+                        <h3><t t-esc="state.kpis.in_shop_vehicles"/></h3>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="card p-3">
+                        <span>Fleet Utilization</span>
+                        <h3><t t-esc="state.kpis.fleet_utilization"/>%</h3>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="card p-3">
+                        <span>Active Trips</span>
+                        <h3><t t-esc="state.kpis.active_trips"/></h3>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="card p-3">
+                        <span>Pending Trips</span>
+                        <h3><t t-esc="state.kpis.pending_trips"/></h3>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="card p-3">
+                        <span>Drivers On Duty</span>
+                        <h3><t t-esc="state.kpis.drivers_on_duty"/></h3>
+                    </div>
+                </div>
+            </div>
+
+            <h4>Per-Vehicle Analytics</h4>
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>Vehicle</th>
+                        <th>Fuel Efficiency (km/L)</th>
+                        <th>Operational Cost</th>
+                        <th>ROI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="state.analytics" t-as="row" t-key="row.id">
+                        <tr>
+                            <td><t t-esc="row.display_name"/></td>
+                            <td><t t-esc="row.fuel_efficiency.toFixed(2)"/></td>
+                            <td><t t-esc="row.total_operational_cost.toFixed(2)"/></td>
+                            <td><t t-esc="(row.roi * 100).toFixed(1)"/>%</td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+        </div>
+    </t>
+</templates>
