@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="fleet_vehicle_state_available" model="fleet.vehicle.state">
+            <field name="name">Available</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="fleet_vehicle_state_on_trip" model="fleet.vehicle.state">
+            <field name="name">On Trip</field>
+            <field name="sequence">2</field>
+        </record>
+        <record id="fleet_vehicle_state_in_shop" model="fleet.vehicle.state">
+            <field name="name">In Shop</field>
+            <field name="sequence">3</field>
+        </record>
+        <record id="fleet_vehicle_state_retired" model="fleet.vehicle.state">
+            <field name="name">Retired</field>
+            <field name="sequence">4</field>
+        </record>
+
+        <record id="seq_fleet_trip" model="ir.sequence">
+            <field name="name">Fleet Trip</field>
+            <field name="code">fleet.trip</field>
+            <field name="prefix">TRIP/%(year)s/</field>
+            <field name="padding">4</field>
+        </record>
+    </data>
+</odoo>
