@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fleet_vehicle_safety_officer,fleet.vehicle.safety.officer,fleet.model_fleet_vehicle,group_transitops_safety_officer,1,0,0,0
+access_res_partner_safety_officer,res.partner.safety.officer,base.model_res_partner,group_transitops_safety_officer,1,0,0,0
+access_fleet_vehicle_financial_analyst,fleet.vehicle.financial.analyst,fleet.model_fleet_vehicle,group_transitops_financial_analyst,1,0,0,0
