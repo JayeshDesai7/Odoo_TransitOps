@@ -164,6 +164,6 @@ This release covers the foundation milestone:
 
 ---
 
-## License
+
 
 
