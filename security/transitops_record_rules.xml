@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- Financial Analyst: read-only on cost data, no vehicle/driver edits -->
+        <record id="rule_fleet_vehicle_financial_readonly" model="ir.rule">
+            <field name="name">Financial Analyst: Vehicles Read-Only</field>
+            <field name="model_id" ref="fleet.model_fleet_vehicle"/>
+            <field name="groups" eval="[(4, ref('group_transitops_financial_analyst'))]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_read">1</field>
+            <field name="perm_write">0</field>
+            <field name="perm_create">0</field>
+            <field name="perm_unlink">0</field>
+        </record>
+
+        <!-- Safety Officer: read-only on drivers (res.partner is shared with
+             Sales/Accounting contacts, so we scope to flagged drivers only) -->
+        <record id="rule_res_partner_safety_officer_drivers_only" model="ir.rule">
+            <field name="name">Safety Officer: Drivers Only, Read-Only</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="groups" eval="[(4, ref('group_transitops_safety_officer'))]"/>
+            <field name="domain_force">[('is_transitops_driver', '=', True)]</field>
+            <field name="perm_read">1</field>
+            <field name="perm_write">0</field>
+            <field name="perm_create">0</field>
+            <field name="perm_unlink">0</field>
+        </record>
+
+        <!-- Dispatcher: can only dispatch using Available vehicles/drivers
+             (defense in depth — the view domains already filter this, this
+             covers direct RPC calls bypassing the UI) -->
+        <record id="rule_fleet_vehicle_dispatcher_no_retired" model="ir.rule">
+            <field name="name">Dispatcher: Cannot Write Retired Vehicles</field>
+            <field name="model_id" ref="fleet.model_fleet_vehicle"/>
+            <field name="groups" eval="[(4, ref('group_transitops_dispatcher'))]"/>
+            <field name="domain_force">[('state_id.name', '!=', 'Retired')]</field>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_create">1</field>
+            <field name="perm_unlink">0</field>
+        </record>
+
+    </data>
+</odoo>
