@@ -1,0 +1,16 @@
+.transitops_dashboard {
+    .card {
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+
+        span {
+            font-size: 0.85rem;
+            color: #6c757d;
+            text-transform: uppercase;
+        }
+        h3 {
+            margin-top: 4px;
+            font-weight: 600;
+        }
+    }
+}
